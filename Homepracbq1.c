@@ -2,30 +2,30 @@
 #include <stdlib.h>
 
 typedef struct {
-    int s;
-    int i;
-    int j;
+    int p;
+    int q;
+    int r;
 } TestCase;
-char get_spiral_char(int s, int i, int j) {
-    if (i == s) {
+char get_spiral_char(int p, int q, int r) {
+    if (q == p) {
         return '*';
     } 
-    else if (i == s - 1) {
-        if (j == 1 || j == s) {
+    else if (q == p - 1) {
+        if (r == 1 || r == p) {
             return '*';
         } else {
             return '+';
         }
     } 
     else {
-        int max_col = 2 * ((i + 1) / 2);
+        int max_col = 2 * ((q + 1) / 2);
         
-        if (i == s - 3) {
-            max_col = s - 1;
+        if (q == p - 3) {
+            max_col = p - 1;
         }
 
-        if (j <= max_col) {
-            if (j % 2 == 1) {
+        if (r <= max_col) {
+            if (r % 2 == 1) {
                 return '*';
             } else {
                 return '+';
@@ -37,18 +37,18 @@ char get_spiral_char(int s, int i, int j) {
 }
 
 int main() {
-    int t;
-    if (scanf("%d", &t) != 1) return 0;
-    TestCase *tests = (TestCase *)malloc(t * sizeof(TestCase));
-    char *results = (char *)malloc(t * sizeof(char));
-    for (int k = 0; k < t; k++) {
-        scanf("%d %d %d", &tests[k].s, &tests[k].i, &tests[k].j);
+    int w;
+    if (scanf("%d", &w) != 1) return 0;
+    TestCase *tests = (TestCase *)malloc(w * sizeof(TestCase));
+    char *results = (char *)malloc(w * sizeof(char));
+    for (int d = 0; d < w; d++) {
+        scanf("%d %d %d", &tests[d].p, &tests[d].q, &tests[d].r);
     }
-    for (int k = 0; k < t; k++) {
-        results[k] = get_spiral_char(tests[k].s, tests[k].i, tests[k].j);
+    for (int d = 0; d < w; d++) {
+        results[d] = get_spiral_char(tests[d].p, tests[d].q, tests[d].r);
     }
-    for (int k = 0; k < t; k++) {
-        printf("%c\n", results[k]);
+    for (int d = 0; d < w; d++) {
+        printf("%c\n", results[d]);
     }
 
     free(tests);
